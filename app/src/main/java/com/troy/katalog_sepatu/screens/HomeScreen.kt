@@ -3,11 +3,9 @@ package com.troy.katalog_sepatu.screens
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -29,7 +27,6 @@ import com.troy.katalog_sepatu.components.BrandCard
 import com.troy.katalog_sepatu.ui.theme.Black
 import com.troy.katalog_sepatu.ui.theme.MediumGray
 import com.troy.katalog_sepatu.ui.theme.NikeRed
-import com.troy.katalog_sepatu.ui.theme.SurfaceBlack
 
 @Composable
 fun HomeScreen(
@@ -41,15 +38,9 @@ fun HomeScreen(
     val configuration = LocalConfiguration.current
     val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
-    val brands = listOf(
-        Triple("Kobe", "Kobe Bryant", 3),
-        Triple("LeBron", "LeBron James", 3),
-        Triple("Sabrina", "Sabrina Ionescu", 3)
-    )
-
     Column(
         modifier = modifier
-            .fillMaxSize()
+            .fillMaxWidth()
             .background(Black)
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally

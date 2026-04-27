@@ -5,14 +5,11 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.troy.katalog_sepatu.screens.BrandListScreen
 import com.troy.katalog_sepatu.screens.DetailScreen
@@ -25,7 +22,7 @@ import com.troy.katalog_sepatu.viewmodel.ShoeViewModel
 class MainActivity : ComponentActivity() {
 
     companion object {
-        // Ganti dengan NIM kamu
+        // Tag Logcat menggunakan NIM
         private const val LOG_TAG = "2055301012"
     }
 
@@ -86,6 +83,8 @@ class MainActivity : ComponentActivity() {
                     Log.d(LOG_TAG, "Searching: $query")
                 },
                 results = viewModel.searchResults,
+                errorMessage = viewModel.searchError,
+                onClearError = { viewModel.clearSearchError() },
                 onShoeClick = { shoe ->
                     Log.d(LOG_TAG, "Shoe clicked from search: ${shoe.name}")
                     selectedShoe = shoe

@@ -21,9 +21,27 @@ class ShoeViewModel : ViewModel() {
     var sortOrder by mutableStateOf("")
         private set
 
+    // Validation states
+    var searchError by mutableStateOf<String?>(null)
+        private set
+
     fun updateSearchQuery(query: String) {
         searchQuery = query
+
+        // Validasi if-else: input tidak boleh kosong saat search
+        if (query.isBlank()) {
+            searchError = "Masukkan kata kunci pencarian"
+            searchResults = emptyList()
+            return
+        }
+
+        searchError = null
         searchResults = linearSearch(query)
+
+        // Validasi if-else: cek apakah hasil pencarian kosong
+        if (searchResults.isEmpty()) {
+            searchError = "Hasil tidak ditemukan untuk \"$query\""
+        }
     }
 
     fun linearSearch(query: String): List<Shoe> {
@@ -67,10 +85,15 @@ class ShoeViewModel : ViewModel() {
     fun resetSearch() {
         searchQuery = ""
         searchResults = emptyList()
+        searchError = null
     }
 
     fun resetSort() {
         sortOrder = ""
         sortedShoes = ShoeData.allShoes.toList()
+    }
+
+    fun clearSearchError() {
+        searchError = null
     }
 }

@@ -14,20 +14,24 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
@@ -47,16 +51,38 @@ fun SearchScreen(
     query: String,
     onQueryChange: (String) -> Unit,
     results: List<Shoe>,
+    errorMessage: String?,
+    onClearError: () -> Unit,
     onShoeClick: (Shoe) -> Unit,
     onBack: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val configuration = LocalConfiguration.current
     val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    // Tampilkan Snackbar saat ada error
+    LaunchedEffect(errorMessage) {
+        errorMessage?.let {
+            snackbarHostState.showSnackbar(it)
+            onClearError()
+        }
+    }
 
     Scaffold(
         modifier = modifier,
         containerColor = Black,
+        snackbarHost = {
+            SnackbarHost(hostState = snackbarHostState) { data ->
+                Text(
+                    text = data.visuals.message,
+                    color = Color.White,
+                    modifier = Modifier
+                        .background(NikeRed, shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp))
+                        .padding(16.dp)
+                )
+            }
+        },
         topBar = {
             TopAppBar(
                 title = {
@@ -120,8 +146,11 @@ fun SearchScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             Text(
-                text = if (query.isEmpty()) "Masukkan kata kunci pencarian"
-                       else "Hasil: ${results.size} ditemukan",
+                text = when {
+                    query.isEmpty() -> "Masukkan kata kunci pencarian"
+                    results.isEmpty() -> "Ketik dan tekan enter untuk mencari"
+                    else -> "Hasil: ${results.size} ditemukan"
+                },
                 color = MediumGray,
                 fontSize = 12.sp
             )
@@ -149,10 +178,10 @@ fun SearchScreen(
                     contentPadding = PaddingValues(bottom = 16.dp),
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    items(results.size) { index ->
+                    items(results) { shoe ->
                         ShoeCard(
-                            shoe = results[index],
-                            onClick = { onShoeClick(results[index]) }
+                            shoe = shoe,
+                            onClick = { onShoeClick(shoe) }
                         )
                     }
                 }
