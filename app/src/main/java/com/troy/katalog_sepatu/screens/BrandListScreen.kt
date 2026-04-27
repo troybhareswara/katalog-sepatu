@@ -29,12 +29,14 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.tooling.preview.Preview
 import com.troy.katalog_sepatu.components.ShoeCard
 import com.troy.katalog_sepatu.data.ShoeData
 import com.troy.katalog_sepatu.model.Shoe
 import com.troy.katalog_sepatu.ui.theme.Black
 import com.troy.katalog_sepatu.ui.theme.DarkGray
 import com.troy.katalog_sepatu.ui.theme.MediumGray
+import com.troy.katalog_sepatu.ui.theme.KatalogsepatuTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -134,5 +136,29 @@ fun BrandListScreen(
                 }
             }
         }
+    }
+}
+
+@Preview(name = "BrandListScreen Portrait", showBackground = true)
+@Composable
+fun BrandListScreenPreview() {
+    KatalogsepatuTheme {
+        BrandListScreen(
+            brand = "Kobe",
+            onBack = {},
+            onShoeClick = {}
+        )
+    }
+}
+
+@Preview(name = "BrandListScreen Landscape", widthDp = 800, heightDp = 480, showBackground = true)
+@Composable
+fun BrandListScreenLandscapePreview() {
+    KatalogsepatuTheme {
+        BrandListScreen(
+            brand = "Kobe",
+            onBack = {},
+            onShoeClick = {}
+        )
     }
 }

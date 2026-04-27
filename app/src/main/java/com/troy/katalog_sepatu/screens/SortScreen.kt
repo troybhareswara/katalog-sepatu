@@ -15,6 +15,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -43,6 +44,7 @@ import com.troy.katalog_sepatu.ui.theme.Black
 import com.troy.katalog_sepatu.ui.theme.DarkGray
 import com.troy.katalog_sepatu.ui.theme.MediumGray
 import com.troy.katalog_sepatu.ui.theme.NikeRed
+import com.troy.katalog_sepatu.ui.theme.KatalogsepatuTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -181,5 +183,20 @@ fun SortScreen(
                 }
             }
         }
+    }
+}
+
+@Preview(name = "SortScreen Portrait", showBackground = true)
+@Composable
+fun SortScreenPreview() {
+    KatalogsepatuTheme {
+        SortScreen(
+            sortedShoes = com.troy.katalog_sepatu.data.ShoeData.allShoes.toList(),
+            sortOrder = "AZ",
+            onSortAZ = {},
+            onSortZA = {},
+            onShoeClick = {},
+            onBack = {}
+        )
     }
 }

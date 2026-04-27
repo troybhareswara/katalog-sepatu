@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -37,6 +38,7 @@ import com.troy.katalog_sepatu.ui.theme.Black
 import com.troy.katalog_sepatu.ui.theme.DarkGray
 import com.troy.katalog_sepatu.ui.theme.MediumGray
 import com.troy.katalog_sepatu.ui.theme.NikeRed
+import com.troy.katalog_sepatu.ui.theme.KatalogsepatuTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -230,4 +232,22 @@ private fun DetailContent(shoe: Shoe) {
     )
 
     Spacer(modifier = Modifier.height(32.dp))
+}
+
+@Preview(name = "DetailScreen Portrait", showBackground = true)
+@Composable
+fun DetailScreenPreview() {
+    KatalogsepatuTheme {
+        DetailScreen(
+            shoe = com.troy.katalog_sepatu.model.Shoe(
+                id = 1,
+                name = "Nike Kobe 6 Protro \"Mambacital\"",
+                brand = "Kobe",
+                price = "Rp 2.800.000",
+                description = "Kobe 6 Protro Mambacital merayakan warisan Kobe Bryant dengan desain ikonik.",
+                colorOption = "Hitam"
+            ),
+            onBack = {}
+        )
+    }
 }
