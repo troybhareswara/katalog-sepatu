@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -44,6 +45,7 @@ import com.troy.katalog_sepatu.ui.theme.Black
 import com.troy.katalog_sepatu.ui.theme.DarkGray
 import com.troy.katalog_sepatu.ui.theme.MediumGray
 import com.troy.katalog_sepatu.ui.theme.NikeRed
+import com.troy.katalog_sepatu.ui.theme.KatalogsepatuTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -187,5 +189,21 @@ fun SearchScreen(
                 }
             }
         }
+    }
+}
+
+@Preview(name = "SearchScreen Portrait", showBackground = true)
+@Composable
+fun SearchScreenPreview() {
+    KatalogsepatuTheme {
+        SearchScreen(
+            query = "kobe",
+            onQueryChange = {},
+            results = com.troy.katalog_sepatu.data.ShoeData.allShoes.toList(),
+            errorMessage = null,
+            onClearError = {},
+            onShoeClick = {},
+            onBack = {}
+        )
     }
 }

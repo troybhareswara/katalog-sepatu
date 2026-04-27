@@ -1,6 +1,7 @@
 package com.troy.katalog_sepatu.screens
 
 import android.content.res.Configuration
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,10 +9,12 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,10 +26,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import com.troy.katalog_sepatu.R
 import com.troy.katalog_sepatu.components.BrandCard
 import com.troy.katalog_sepatu.ui.theme.Black
 import com.troy.katalog_sepatu.ui.theme.MediumGray
 import com.troy.katalog_sepatu.ui.theme.NikeRed
+import com.troy.katalog_sepatu.ui.theme.KatalogsepatuTheme
 
 @Composable
 fun HomeScreen(
@@ -41,24 +48,22 @@ fun HomeScreen(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .background(Black)
+            .background(Color.White)
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(modifier = Modifier.height(32.dp))
 
-        // Header
-        Text(
-            text = "NIKE",
-            color = NikeRed,
-            fontSize = 48.sp,
-            fontWeight = FontWeight.Bold,
-            letterSpacing = 8.sp
+        // Header Logo
+        Image(
+            painter = painterResource(id = R.drawable.ic_nike_logo),
+            contentDescription = "Nike Logo",
+            modifier = Modifier.height(80.dp)
         )
 
         Text(
             text = "BASKETBALL",
-            color = Color.White,
+            color = Color.Black,
             fontSize = 20.sp,
             fontWeight = FontWeight.Light,
             letterSpacing = 4.sp
@@ -68,7 +73,7 @@ fun HomeScreen(
 
         Text(
             text = "Katalog Sepatu Basket",
-            color = MediumGray,
+            color = Color.DarkGray,
             fontSize = 14.sp,
             textAlign = TextAlign.Center
         )
@@ -77,7 +82,7 @@ fun HomeScreen(
 
         Text(
             text = "PILIH MERK",
-            color = MediumGray,
+            color = Color.DarkGray,
             fontSize = 12.sp,
             fontWeight = FontWeight.Medium,
             letterSpacing = 2.sp
@@ -152,9 +157,33 @@ fun HomeScreen(
         // Bottom navigation
         Text(
             text = "Cari | Urutkan",
-            color = MediumGray,
+            color = Color.DarkGray,
             fontSize = 12.sp
         )
         Spacer(modifier = Modifier.height(8.dp))
+    }
+}
+
+@Preview(name = "HomeScreen Portrait", showBackground = true)
+@Composable
+fun HomeScreenPreview() {
+    KatalogsepatuTheme {
+        HomeScreen(
+            onNavigateToBrand = {},
+            onNavigateToSearch = {},
+            onNavigateToSort = {}
+        )
+    }
+}
+
+@Preview(name = "HomeScreen Landscape", widthDp = 800, heightDp = 480, showBackground = true)
+@Composable
+fun HomeScreenLandscapePreview() {
+    KatalogsepatuTheme {
+        HomeScreen(
+            onNavigateToBrand = {},
+            onNavigateToSearch = {},
+            onNavigateToSort = {}
+        )
     }
 }
