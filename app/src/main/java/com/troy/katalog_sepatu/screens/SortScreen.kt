@@ -1,7 +1,6 @@
 package com.troy.katalog_sepatu.screens
 
 import android.content.res.Configuration
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -15,7 +14,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -38,13 +36,13 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.tooling.preview.Preview
 import com.troy.katalog_sepatu.components.ShoeCard
 import com.troy.katalog_sepatu.model.Shoe
-import com.troy.katalog_sepatu.ui.theme.Black
-import com.troy.katalog_sepatu.ui.theme.DarkGray
+import com.troy.katalog_sepatu.ui.theme.KatalogsepatuTheme
 import com.troy.katalog_sepatu.ui.theme.MediumGray
 import com.troy.katalog_sepatu.ui.theme.NikeRed
-import com.troy.katalog_sepatu.ui.theme.KatalogsepatuTheme
+import com.troy.katalog_sepatu.ui.theme.OffWhite
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -62,7 +60,7 @@ fun SortScreen(
 
     Scaffold(
         modifier = modifier,
-        containerColor = Black,
+        containerColor = Color.White,
         topBar = {
             TopAppBar(
                 title = {
@@ -82,7 +80,7 @@ fun SortScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = DarkGray
+                    containerColor = Color.Black
                 )
             )
         }
@@ -103,7 +101,7 @@ fun SortScreen(
                     modifier = Modifier.weight(1f),
                     shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = if (sortOrder == "AZ") NikeRed else DarkGray
+                        containerColor = if (sortOrder == "AZ") NikeRed else MediumGray
                     )
                 ) {
                     Icon(
@@ -123,7 +121,7 @@ fun SortScreen(
                     modifier = Modifier.weight(1f),
                     shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = if (sortOrder == "ZA") NikeRed else DarkGray
+                        containerColor = if (sortOrder == "ZA") NikeRed else MediumGray
                     )
                 ) {
                     Icon(

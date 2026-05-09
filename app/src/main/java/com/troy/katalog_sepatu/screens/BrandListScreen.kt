@@ -33,10 +33,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.troy.katalog_sepatu.components.ShoeCard
 import com.troy.katalog_sepatu.data.ShoeData
 import com.troy.katalog_sepatu.model.Shoe
-import com.troy.katalog_sepatu.ui.theme.Black
-import com.troy.katalog_sepatu.ui.theme.DarkGray
-import com.troy.katalog_sepatu.ui.theme.MediumGray
 import com.troy.katalog_sepatu.ui.theme.KatalogsepatuTheme
+import com.troy.katalog_sepatu.ui.theme.NikeRed
+import com.troy.katalog_sepatu.ui.theme.OffWhite
+import com.troy.katalog_sepatu.ui.theme.SurfaceWhite
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -59,7 +59,7 @@ fun BrandListScreen(
 
     Scaffold(
         modifier = modifier,
-        containerColor = Black,
+        containerColor = Color.White,
         topBar = {
             TopAppBar(
                 title = {
@@ -71,7 +71,7 @@ fun BrandListScreen(
                         )
                         Text(
                             text = "$brandDisplayName Collection",
-                            color = MediumGray,
+                            color = Color.White.copy(alpha = 0.7f),
                             fontSize = 12.sp
                         )
                     }
@@ -86,7 +86,7 @@ fun BrandListScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = DarkGray
+                    containerColor = Color.Black
                 )
             )
         }
@@ -105,9 +105,9 @@ fun BrandListScreen(
                 verticalArrangement = Arrangement.spacedBy(12.dp),
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Black)
+                    .background(OffWhite)
             ) {
-                items(shoes) { shoe ->
+                items(shoes.toList()) { shoe ->
                     ShoeCard(
                         shoe = shoe,
                         onClick = { onShoeClick(shoe) }
@@ -126,12 +126,12 @@ fun BrandListScreen(
                 verticalArrangement = Arrangement.spacedBy(12.dp),
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Black)
+                    .background(OffWhite)
             ) {
-                items(shoes.size) { index ->
+                items(shoes.toList()) { shoe ->
                     ShoeCard(
-                        shoe = shoes[index],
-                        onClick = { onShoeClick(shoes[index]) }
+                        shoe = shoe,
+                        onClick = { onShoeClick(shoe) }
                     )
                 }
             }

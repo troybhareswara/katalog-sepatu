@@ -22,8 +22,7 @@ import com.troy.katalog_sepatu.viewmodel.ShoeViewModel
 class MainActivity : ComponentActivity() {
 
     companion object {
-        // Tag Logcat menggunakan NIM
-        private const val LOG_TAG = "2055301012"
+        private const val LOG_TAG = "42430052"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,18 +47,31 @@ class MainActivity : ComponentActivity() {
 
         when (currentScreen) {
             "home" -> HomeScreen(
+                searchQuery = viewModel.searchQuery,
+                onSearchQueryChange = { query ->
+                    viewModel.updateSearchQuery(query)
+                    Log.d(LOG_TAG, "Searching: $query")
+                },
+                searchResults = viewModel.searchResults,
+                sortedShoes = viewModel.sortedShoes,
+                sortOrder = viewModel.sortOrder,
+                onSortAZ = {
+                    viewModel.bubbleSortAZ()
+                    Log.d(LOG_TAG, "Sorting A-Z")
+                },
+                onSortZA = {
+                    viewModel.bubbleSortZA()
+                    Log.d(LOG_TAG, "Sorting Z-A")
+                },
                 onNavigateToBrand = { brand ->
                     Log.d(LOG_TAG, "Navigating to brand: $brand")
                     selectedBrand = brand
                     currentScreen = "brandList"
                 },
-                onNavigateToSearch = {
-                    Log.d(LOG_TAG, "Navigating to search")
-                    currentScreen = "search"
-                },
-                onNavigateToSort = {
-                    Log.d(LOG_TAG, "Navigating to sort")
-                    currentScreen = "sort"
+                onShoeClick = { shoe ->
+                    Log.d(LOG_TAG, "Shoe clicked from home: ${shoe.name}")
+                    selectedShoe = shoe
+                    currentScreen = "detail"
                 }
             )
 

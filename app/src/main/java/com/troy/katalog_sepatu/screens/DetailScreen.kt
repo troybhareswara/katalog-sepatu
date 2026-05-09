@@ -1,6 +1,7 @@
 package com.troy.katalog_sepatu.screens
 
 import android.content.res.Configuration
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,7 +14,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -29,16 +29,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.tooling.preview.Preview
 import com.troy.katalog_sepatu.model.Shoe
-import com.troy.katalog_sepatu.ui.theme.Black
-import com.troy.katalog_sepatu.ui.theme.DarkGray
+import com.troy.katalog_sepatu.ui.theme.KatalogsepatuTheme
 import com.troy.katalog_sepatu.ui.theme.MediumGray
 import com.troy.katalog_sepatu.ui.theme.NikeRed
-import com.troy.katalog_sepatu.ui.theme.KatalogsepatuTheme
+import com.troy.katalog_sepatu.ui.theme.OffWhite
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -52,7 +54,7 @@ fun DetailScreen(
 
     Scaffold(
         modifier = modifier,
-        containerColor = Black,
+        containerColor = Color.White,
         topBar = {
             TopAppBar(
                 title = {
@@ -72,7 +74,7 @@ fun DetailScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = DarkGray
+                    containerColor = Color.Black
                 )
             )
         }
@@ -83,32 +85,44 @@ fun DetailScreen(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(innerPadding)
-                    .padding(16.dp),
+                    .padding(16.dp)
+                    .background(OffWhite),
                 horizontalArrangement = Arrangement.spacedBy(24.dp)
             ) {
-                // Image placeholder
+                // Image Section
                 Box(
                     modifier = Modifier
                         .weight(1f)
                         .fillMaxSize()
                         .clip(RoundedCornerShape(16.dp))
-                        .background(DarkGray),
+                        .background(Color.White),
                     contentAlignment = Alignment.Center
                 ) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(
-                            text = shoe.brand.take(2).uppercase(),
-                            color = NikeRed,
-                            fontSize = 48.sp,
-                            fontWeight = FontWeight.Bold
+                    if (shoe.imageRes != 0) {
+                        Image(
+                            painter = painterResource(id = shoe.imageRes),
+                            contentDescription = shoe.name,
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(16.dp),
+                            contentScale = ContentScale.Fit
                         )
-                        Text(
-                            text = "#${shoe.id}",
-                            color = MediumGray,
-                            fontSize = 18.sp
-                        )
+                    } else {
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = shoe.brand.take(2).uppercase(),
+                                color = NikeRed,
+                                fontSize = 48.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = "#${shoe.id}",
+                                color = MediumGray,
+                                fontSize = 18.sp
+                            )
+                        }
                     }
                 }
 
@@ -128,31 +142,43 @@ fun DetailScreen(
                     .fillMaxSize()
                     .padding(innerPadding)
                     .verticalScroll(rememberScrollState())
+                    .background(OffWhite)
             ) {
-                // Image placeholder
+                // Image Section
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(300.dp)
                         .padding(24.dp)
                         .clip(RoundedCornerShape(16.dp))
-                        .background(DarkGray),
+                        .background(Color.White),
                     contentAlignment = Alignment.Center
                 ) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        Text(
-                            text = shoe.brand.take(2).uppercase(),
-                            color = NikeRed,
-                            fontSize = 64.sp,
-                            fontWeight = FontWeight.Bold
+                    if (shoe.imageRes != 0) {
+                        Image(
+                            painter = painterResource(id = shoe.imageRes),
+                            contentDescription = shoe.name,
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(16.dp),
+                            contentScale = ContentScale.Fit
                         )
-                        Text(
-                            text = "#${shoe.id}",
-                            color = MediumGray,
-                            fontSize = 20.sp
-                        )
+                    } else {
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                text = shoe.brand.take(2).uppercase(),
+                                color = NikeRed,
+                                fontSize = 64.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = "#${shoe.id}",
+                                color = MediumGray,
+                                fontSize = 20.sp
+                            )
+                        }
                     }
                 }
 
@@ -180,7 +206,7 @@ private fun DetailContent(shoe: Shoe) {
 
     Text(
         text = shoe.name,
-        color = Color.White,
+        color = Color.Black,
         fontSize = 24.sp,
         fontWeight = FontWeight.Bold
     )
@@ -189,7 +215,7 @@ private fun DetailContent(shoe: Shoe) {
 
     Text(
         text = shoe.price,
-        color = Color.White,
+        color = Color.Black,
         fontSize = 28.sp,
         fontWeight = FontWeight.Bold
     )
@@ -208,7 +234,7 @@ private fun DetailContent(shoe: Shoe) {
 
     Text(
         text = shoe.description,
-        color = Color.White.copy(alpha = 0.8f),
+        color = Color.Black.copy(alpha = 0.8f),
         fontSize = 14.sp,
         lineHeight = 22.sp
     )
@@ -227,7 +253,7 @@ private fun DetailContent(shoe: Shoe) {
 
     Text(
         text = shoe.colorOption,
-        color = Color.White,
+        color = Color.Black,
         fontSize = 14.sp
     )
 

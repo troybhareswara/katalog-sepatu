@@ -14,8 +14,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Search
@@ -36,16 +38,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.tooling.preview.Preview
 import com.troy.katalog_sepatu.components.ShoeCard
 import com.troy.katalog_sepatu.model.Shoe
-import com.troy.katalog_sepatu.ui.theme.Black
-import com.troy.katalog_sepatu.ui.theme.DarkGray
+import com.troy.katalog_sepatu.ui.theme.KatalogsepatuTheme
 import com.troy.katalog_sepatu.ui.theme.MediumGray
 import com.troy.katalog_sepatu.ui.theme.NikeRed
-import com.troy.katalog_sepatu.ui.theme.KatalogsepatuTheme
+import com.troy.katalog_sepatu.ui.theme.OffWhite
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -62,6 +66,7 @@ fun SearchScreen(
     val configuration = LocalConfiguration.current
     val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
     val snackbarHostState = remember { SnackbarHostState() }
+    val focusManager = LocalFocusManager.current
 
     // Tampilkan Snackbar saat ada error
     LaunchedEffect(errorMessage) {
@@ -73,14 +78,14 @@ fun SearchScreen(
 
     Scaffold(
         modifier = modifier,
-        containerColor = Black,
+        containerColor = Color.White,
         snackbarHost = {
             SnackbarHost(hostState = snackbarHostState) { data ->
                 Text(
                     text = data.visuals.message,
                     color = Color.White,
                     modifier = Modifier
-                        .background(NikeRed, shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp))
+                        .background(NikeRed, shape = RoundedCornerShape(8.dp))
                         .padding(16.dp)
                 )
             }
@@ -104,7 +109,7 @@ fun SearchScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = DarkGray
+                    containerColor = Color.Black
                 )
             )
         }
@@ -134,15 +139,18 @@ fun SearchScreen(
                 },
                 modifier = Modifier.fillMaxWidth(),
                 colors = OutlinedTextFieldDefaults.colors(
-                    focusedTextColor = Color.White,
-                    unfocusedTextColor = Color.White,
+                    focusedTextColor = Color.Black,
+                    unfocusedTextColor = Color.Black,
                     focusedBorderColor = NikeRed,
                     unfocusedBorderColor = MediumGray,
                     cursorColor = NikeRed,
-                    focusedContainerColor = DarkGray,
-                    unfocusedContainerColor = DarkGray
+                    focusedContainerColor = OffWhite,
+                    unfocusedContainerColor = OffWhite
                 ),
-                singleLine = true
+                shape = RoundedCornerShape(12.dp),
+                singleLine = true,
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+                keyboardActions = KeyboardActions(onSearch = { focusManager.clearFocus() })
             )
 
             Spacer(modifier = Modifier.height(16.dp))

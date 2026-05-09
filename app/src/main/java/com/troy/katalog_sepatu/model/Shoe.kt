@@ -6,5 +6,6 @@ data class Shoe(
     val brand: String,
     val price: String,
     val description: String,
-    val colorOption: String = "Hitam"
+    val colorOption: String = "Hitam",
+    val imageRes: Int = 0  // 0 = placeholder, >0 = resource ID gambar
 )

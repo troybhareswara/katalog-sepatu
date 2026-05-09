@@ -1,5 +1,6 @@
 package com.troy.katalog_sepatu.viewmodel
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -8,6 +9,10 @@ import com.troy.katalog_sepatu.data.ShoeData
 import com.troy.katalog_sepatu.model.Shoe
 
 class ShoeViewModel : ViewModel() {
+
+    companion object {
+        private const val LOG_TAG = "42430052"
+    }
 
     var searchQuery by mutableStateOf("")
         private set
@@ -23,6 +28,13 @@ class ShoeViewModel : ViewModel() {
 
     // Validation states
     var searchError by mutableStateOf<String?>(null)
+        private set
+
+    // Error state untuk try-catch
+    var hasError by mutableStateOf(false)
+        private set
+
+    var errorMessage by mutableStateOf<String?>(null)
         private set
 
     fun updateSearchQuery(query: String) {
@@ -53,33 +65,63 @@ class ShoeViewModel : ViewModel() {
     }
 
     fun bubbleSortAZ() {
-        sortOrder = "AZ"
-        val list = ShoeData.allShoes.toMutableList()
-        for (i in 0 until list.size - 1) {
-            for (j in 0 until list.size - i - 1) {
-                if (list[j].name.lowercase() > list[j + 1].name.lowercase()) {
-                    val temp = list[j]
-                    list[j] = list[j + 1]
-                    list[j + 1] = temp
+        try {
+            // Toggle: jika sudah A-Z, reset ke normal
+            if (sortOrder == "AZ") {
+                sortOrder = ""
+                sortedShoes = ShoeData.allShoes.toList()
+                Log.d(LOG_TAG, "Sorting di-reset ke normal")
+                return
+            }
+            sortOrder = "AZ"
+            val list = ShoeData.allShoes.toMutableList()
+            for (i in 0 until list.size - 1) {
+                for (j in 0 until list.size - i - 1) {
+                    if (list[j].name.lowercase() > list[j + 1].name.lowercase()) {
+                        val temp = list[j]
+                        list[j] = list[j + 1]
+                        list[j + 1] = temp
+                    }
                 }
             }
+            sortedShoes = list
+            hasError = false
+            Log.d(LOG_TAG, "Sorting A-Z berhasil")
+        } catch (e: Exception) {
+            hasError = true
+            errorMessage = "Error saat mengurutkan: ${e.message}"
+            Log.e(LOG_TAG, "Error sorting A-Z: ${e.message}")
         }
-        sortedShoes = list
     }
 
     fun bubbleSortZA() {
-        sortOrder = "ZA"
-        val list = ShoeData.allShoes.toMutableList()
-        for (i in 0 until list.size - 1) {
-            for (j in 0 until list.size - i - 1) {
-                if (list[j].name.lowercase() < list[j + 1].name.lowercase()) {
-                    val temp = list[j]
-                    list[j] = list[j + 1]
-                    list[j + 1] = temp
+        try {
+            // Toggle: jika sudah Z-A, reset ke normal
+            if (sortOrder == "ZA") {
+                sortOrder = ""
+                sortedShoes = ShoeData.allShoes.toList()
+                Log.d(LOG_TAG, "Sorting di-reset ke normal")
+                return
+            }
+            sortOrder = "ZA"
+            val list = ShoeData.allShoes.toMutableList()
+            for (i in 0 until list.size - 1) {
+                for (j in 0 until list.size - i - 1) {
+                    if (list[j].name.lowercase() < list[j + 1].name.lowercase()) {
+                        val temp = list[j]
+                        list[j] = list[j + 1]
+                        list[j + 1] = temp
+                    }
                 }
             }
+            sortedShoes = list
+            hasError = false
+            Log.d(LOG_TAG, "Sorting Z-A berhasil")
+        } catch (e: Exception) {
+            hasError = true
+            errorMessage = "Error saat mengurutkan: ${e.message}"
+            Log.e(LOG_TAG, "Error sorting Z-A: ${e.message}")
         }
-        sortedShoes = list
     }
 
     fun resetSearch() {
@@ -95,5 +137,10 @@ class ShoeViewModel : ViewModel() {
 
     fun clearSearchError() {
         searchError = null
+    }
+
+    fun clearError() {
+        hasError = false
+        errorMessage = null
     }
 }
