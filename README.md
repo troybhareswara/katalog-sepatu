@@ -17,24 +17,21 @@ Aplikasi katalog sepatu basket Nike untuk memenuhi tugas akademik — berisi kol
 ### 🏠 Portrait Mode
 Halaman utama dengan tampilan 3 kartu atlet NBA — Kobe Bryant, LeBron James, dan Sabrina Ionescu.
 
-![Home Screen Portrait](assets/Screenshot_20260509_202123.png)
+<img src="assets/Screenshot_20260509_202123.png" width="300" alt="Home Screen Portrait">
 
-### 🏞️ Landscape Mode
-Daftar koleksi sepatu Kobe Bryant dengan harga dalam Rupiah.
-
-![Home Screen Landscape ](assets/Screenshot_20260509_202142.png)
+<img src="assets/Screenshot_20260509_202142.png" width="400" alt="Home Screen Landscape">
 
 ### 🔎 Fitur Pencarian (Linear Search)
 Pencarian case-insensitive berdasarkan nama atau merk menggunakan algoritma Linear Search.
 
-![Linear Search](assets/Screenshot_20260509_202225.png)
+<img src="assets/Screenshot_20260509_202225.png" width="400" alt="Linear Search">
 
 ### ↕️ Fitur Pengurutan (Bubble Sort)
 Pengurutan data sepatu secara A-Z dan Z-A menggunakan algoritma Bubble Sort.
 
-![Sort Screen A-Z](assets/Screenshot_20260509_202248.png)
+<img src="assets/Screenshot_20260509_202248.png" width="400" alt="Sort Screen A-Z">
 
-![Sort Screen Z-A](assets/Screenshot_20260509_202257.png)
+<img src="assets/Screenshot_20260509_202257.png" width="400" alt="Sort Screen Z-A">
 
 ---
 
