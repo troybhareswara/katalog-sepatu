@@ -35,7 +35,8 @@ Pengurutan data sepatu secara A-Z dan Z-A menggunakan algoritma Bubble Sort.
 
 ### Screenshoot (Android Studio Logcat)
 Screenshoot Logcat menunjukkan aktivitas aplikasi, termasuk navigasi, pencarian, dan pengurutan.
-<img src="assets/Screenshot 2026-05-09 at 20.45.48.png" width="300" alt="Android Studio">
+
+<img src="assets/Screenshot 2026-05-09 at 20.45.48.png" width="500" alt="Android Studio">
 
 ---
 
