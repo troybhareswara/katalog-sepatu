@@ -24,7 +24,7 @@ Halaman utama dengan tampilan 3 kartu atlet NBA — Kobe Bryant, LeBron James, d
 ### 🔎 Fitur Pencarian (Linear Search)
 Pencarian case-insensitive berdasarkan nama atau merk menggunakan algoritma Linear Search.
 
-<img src="assets/Screenshot_20260509_202225.png" width="400" alt="Linear Search">
+<img src="assets/Screenshot_20260509_202225.png" width="300" alt="Linear Search">
 
 ### ↕️ Fitur Pengurutan (Bubble Sort)
 Pengurutan data sepatu secara A-Z dan Z-A menggunakan algoritma Bubble Sort.
