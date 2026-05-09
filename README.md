@@ -1,6 +1,40 @@
 # Katalog Sepatu Basket Nike
 
-Aplikasi katalog sepatu basket Nike untuk memenuhi tugas UAS yang berisi koleksi sepatu dari 3 atlet NBA: Kobe Bryant, LeBron James, dan Sabrina Ionescu.
+Aplikasi katalog sepatu basket Nike untuk memenuhi tugas akademik — berisi koleksi sepatu dari 3 atlet NBA: Kobe Bryant, LeBron James, dan Sabrina Ionescu.
+
+---
+
+## Credits
+
+- **Nama:** Gede Troy Wiswama Bhareswara
+- **NIM:** 42430052
+- **Mata Kuliah:** Pemrograman Seluler
+
+---
+
+## Screenshots
+
+### 🏠 Portrait Mode
+Halaman utama dengan tampilan 3 kartu atlet NBA — Kobe Bryant, LeBron James, dan Sabrina Ionescu.
+
+![Home Screen Portrait](assets/Screenshot_20260509_202123.png)
+
+### 🏞️ Landscape Mode
+Daftar koleksi sepatu Kobe Bryant dengan harga dalam Rupiah.
+
+![Home Screen Landscape ](assets/Screenshot_20260509_202142.png)
+
+### 🔎 Fitur Pencarian (Linear Search)
+Pencarian case-insensitive berdasarkan nama atau merk menggunakan algoritma Linear Search.
+
+![Linear Search](assets/Screenshot_20260509_202225.png)
+
+### ↕️ Fitur Pengurutan (Bubble Sort)
+Pengurutan data sepatu secara A-Z dan Z-A menggunakan algoritma Bubble Sort.
+
+![Sort Screen A-Z](assets/Screenshot_20260509_202248.png)
+
+![Sort Screen Z-A](assets/Screenshot_20260509_202257.png)
 
 ---
 
@@ -125,38 +159,24 @@ app/build/outputs/apk/debug/app-debug.apk
 
 ## Logcat
 
-Tag Log: `2055301012`
+Tag Log: `42430052`
 
 ```bash
-adb logcat -s 2055301012
+adb logcat -s 42430052
 ```
 
 Contoh output:
 ```
-D/2055301012: Activity started
-D/2055301012: Navigating to brand: Kobe
-D/2055301012: Shoe clicked: Nike Kobe 6 Protro "Mambacital"
-D/2055301012: Searching: kobe
-D/2055301012: Sorting A-Z berhasil
+D/42430052: Activity started
+D/42430052: Navigating to brand: Kobe
+D/42430052: Shoe clicked: Nike Kobe 6 Protro "Mambacital"
+D/42430052: Searching: kobe
+D/42430052: Sorting A-Z berhasil
 ```
-
----
-
-## Screenshots
-
-> *(Tambahkan screenshot aplikasi di sini)*
-
----
-
-## Credits
-
-- **Developer:** Gede Troy Wiswama Bhareswara
-- **NIM:** 42430052
-- **Mata Kuliah:** Pemrograman Seluler
-
 
 ---
 
 ## Lisensi
 
-Project ini dibuat untuk keperluan UAS Pemrograman Seluler.
+Project ini dibuat untuk keperluan akademik - Tugas UAS Pemrograman Seluler.
+
