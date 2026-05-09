@@ -1,6 +1,6 @@
 # Katalog Sepatu Basket Nike
 
-Aplikasi katalog sepatu basket Nike untuk memenuhi tugas akademik berisi koleksi sepatu dari 3 atlet NBA: Kobe Bryant, LeBron James, dan Sabrina Ionescu.
+Aplikasi katalog sepatu basket Nike untuk memenuhi tugas UAS yang berisi koleksi sepatu dari 3 atlet NBA: Kobe Bryant, LeBron James, dan Sabrina Ionescu.
 
 ---
 
@@ -159,4 +159,4 @@ D/2055301012: Sorting A-Z berhasil
 
 ## Lisensi
 
-Project ini dibuat untuk keperluan akademik.
+Project ini dibuat untuk keperluan UAS Pemrograman Seluler.
